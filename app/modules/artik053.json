@@ -1,0 +1,23 @@
+{
+  "id": "010101",
+  "name": {
+    "en": "ARTIK053",
+    "ko": "ARTIK053"
+  },
+  "category": "board",
+  "platform": [ "win32", "darwin" ],
+  "icon": "artik053.png",
+  "module": "artik053.js",
+  "url": "",
+  "entry": {
+    "protocol": "json"
+  },
+  "select_com_port": true,
+  "hardware": {
+    "type": "serial",
+    "control": "slave",
+    "vendor": "ARTIK",
+    "duration": 32,
+    "baudRate": 115200
+  }
+}
