@@ -1,8 +1,8 @@
 {
-  "id": "0D0105",
+  "id": "DD0105",
   "name": {
-    "en": "artik053",
-    "ko": "artik053"
+    "en": "ARTIK053",
+    "ko": "ARTIK053"
   },
   "category": "board",
   "platform": [ "win32", "darwin" ],
