@@ -3,6 +3,7 @@ const BaseModule = require('./baseModule');
 
 class artik053 extends BaseModule {
     constructor() {
+        this.sp = null;
         this.digitalValue = new Array(14);
         this.analogValue = new Array(6);
 
@@ -16,13 +17,39 @@ class artik053 extends BaseModule {
         this.config = config;
     }
 
-    requestInitialData() {
-    };
+    setSerialPort(sp) {
+        this.sp = sp;
+    }
+
+    /**
+     * 모터를 정지하고, output 센서를 체크한다.
+     * @param sp serial port
+     * @returns {null} 직접 serial port 에 ByteArray 를 작성한다.
+     */
+    requestInitialData(sp) {
+        this.isConnect = true;
+        if (!this.sp) {
+            this.sp = sp;
+        }
+
+        if (!this.isSendInitData) {
+            const initBuf = this.makeInitBuffer([0x80], [0, 0]);
+            const motorStop = new Buffer([0xa3, 0x81, 0, 0x81, 0x0f, 0x81, 0]);
+            const initMotor = Buffer.concat([initBuf, motorStop]);
+            this.checkByteSize(initMotor);
+            sp.write(initMotor, () => {
+                this.sensorChecking();
+            });
+        }
+        return null;
+    }
 
     checkInitialData(data, config) {
+        return true;
     };
 
     validateLocalData(data) {
+        return true;
         
     };
 
