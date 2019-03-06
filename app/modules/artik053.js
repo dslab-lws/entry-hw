@@ -490,7 +490,7 @@ class artik053 extends BaseModule {
      *
      * 보내는 데이터는 여러개의 데이터 명령이고 받는 결과 또한 여러개의 결과값이다.
      */
-    /*
+    
     sensorCheck() {
         if (!this.isSensing) {
             this.isSensing = true;
@@ -536,12 +536,12 @@ class artik053 extends BaseModule {
                 } else {
                     sensorBody = Buffer.concat([sensorBody, modeSet, readySi]);
                 }
-            });*/
+            });
             /*
 			리팩토링 없는 isButtonPressed 시작
 			sensorBody
 			*/
-    /*
+    
             let offsetAfterPortResponse = 4 * this.commandResponseSize; // 포트는 [0~3] 까지다.
             Object.keys(this.BUTTON_MAP).forEach((button) => {
                 const buttonPressedCommand = new Buffer([
@@ -553,12 +553,12 @@ class artik053 extends BaseModule {
                 ]);
 
                 sensorBody = Buffer.concat([sensorBody, buttonPressedCommand]);
-            });*/
+            });
 
             /*
             리팩토링 없는 isButtonPressed 종료
              */
-    /*
+    
             const totalLength = initBuf.length + sensorBody.length;
             const sendBuffer = Buffer.concat(
                 [initBuf, sensorBody],
@@ -567,7 +567,7 @@ class artik053 extends BaseModule {
             this.checkByteSize(sendBuffer);
             this.sp.write(sendBuffer);
         }
-    }*/
+    }
 
     connect() { }
 
