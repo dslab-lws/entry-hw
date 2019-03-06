@@ -490,6 +490,7 @@ class artik053 extends BaseModule {
      *
      * 보내는 데이터는 여러개의 데이터 명령이고 받는 결과 또한 여러개의 결과값이다.
      */
+    /*
     sensorCheck() {
         if (!this.isSensing) {
             this.isSensing = true;
@@ -564,7 +565,7 @@ class artik053 extends BaseModule {
             this.checkByteSize(sendBuffer);
             this.sp.write(sendBuffer);
         }
-    }
+    }*/
 
     connect() { }
 
