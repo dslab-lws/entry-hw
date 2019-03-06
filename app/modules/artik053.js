@@ -369,7 +369,7 @@ class artik053 extends BaseModule {
 
         return new Buffer(statusLedCommand);
     }
-
+    /*
     makePortCommandBuffer() {
         let sendBody = null;
         Object.keys(this.PORT_MAP).forEach((port) => {
@@ -481,7 +481,7 @@ class artik053 extends BaseModule {
             }
         });
         return sendBody;
-    }
+    }*/
 
     /**
      * requestInitialData(external interval) -> sensorChecking(interval) -> sensorCheck
