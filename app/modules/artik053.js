@@ -553,7 +553,7 @@ class artik053 extends BaseModule {
                 ]);
 
                 sensorBody = Buffer.concat([sensorBody, buttonPressedCommand]);
-            });
+            });*/
 
             /*
             리팩토링 없는 isButtonPressed 종료
