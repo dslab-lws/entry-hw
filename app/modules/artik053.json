@@ -20,6 +20,5 @@
     "duration": 32,
     "vendor": "FTDI",
     "baudRate": 115200,
-    "firmwarecheck": false
   }
 }
