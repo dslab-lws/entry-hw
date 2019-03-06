@@ -1,15 +1,16 @@
 {
-  "id": "120109",
+  "id": "010909",
   "name": {
     "en": "ARTIK053",
     "ko": "ARTIK053"
   },
   "category": "board",
-  "platform": [ "win32", "darwin" ],
+  "platform": [ "win32" ],
   "icon": "artik053.png",
-  "module": "artik053.js",
+  "module": "arduinoExt.js",
   "url": "https://developer.artik.io/",
   "video": "https://www.youtube.com/channel/UC4rolvSm8ikmnymdbbznNJw",
+  "reconnect": true,
   "entry": {
     "protocol": "json"
   },
@@ -17,8 +18,9 @@
   "hardware": {
     "type": "serial",
     "control": "slave",
-    "vendor": "ARTIK",
     "duration": 32,
-    "baudRate": 115200
+    "vendor": "FTDI",
+    "baudRate": 115200,
+    "firmwarecheck": false
   }
 }
