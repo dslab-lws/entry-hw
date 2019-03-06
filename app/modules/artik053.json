@@ -1,15 +1,13 @@
 {
-  "id": "010955",
+  "id": "010905",
   "name": {
     "en": "ARTIK053",
     "ko": "ARTIK053"
   },
   "category": "board",
-  "platform": [ "win32" ],
+  "platform": [ "win32", "darwin" ],
   "icon": "artik053.png",
   "module": "artik053.js",
-  "url": "https://developer.artik.io/",
-  "video": "https://www.youtube.com/channel/UC4rolvSm8ikmnymdbbznNJw",
   "entry": {
     "protocol": "json"
   },
@@ -17,8 +15,8 @@
   "hardware": {
     "type": "serial",
     "control": "slave",
+    "vendor": "Microsoft",
     "duration": 32,
-    "vendor": "ARTIK",
-    "baudRate": 115200,
+    "baudRate": 115200
   }
 }
