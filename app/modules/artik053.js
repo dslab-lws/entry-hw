@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const BaseModule = require('./baseModule');
 
-class ev3 extends BaseModule {
+class artik053 extends BaseModule {
     constructor() {
         super();
         this.counter = 0;
@@ -12,6 +12,9 @@ class ev3 extends BaseModule {
         this.isConnect = false;
 
         this.sp = null;
+        this.sensors = [];
+        this.CHECK_PORT_MAP = {};
+        this.SENSOR_COUNTER_LIST = {};
         this.returnData = {};
         this.motorMovementTypes = {
             Degrees: 0,
@@ -608,4 +611,4 @@ class ev3 extends BaseModule {
     reset() { }
 }
 
-module.exports = new ev3();
+module.exports = new artik053();

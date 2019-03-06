@@ -2,7 +2,7 @@
   "id": "010109",
   "name": {
     "en": "ARTIK053",
-    "ko": "¾ÆÆ½053"
+    "ko": "ARTIK053"
   },
   "category": "board",
   "platform": [ "win32", "darwin" ],
