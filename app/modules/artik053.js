@@ -13,7 +13,130 @@ class ev3 extends BaseModule {
 
         this.sp = null;
         this.returnData = {};
-
+        this.motorMovementTypes = {
+            Degrees: 0,
+            Power: 1,
+        };
+        this.deviceTypes = {
+            NxtTouch: 1,
+            NxtLight: 2,
+            NxtSound: 3,
+            NxtColor: 4,
+            NxtUltrasonic: 5,
+            NxtTemperature: 6,
+            LMotor: 7,
+            MMotor: 8,
+            Touch: 0x0e,
+            Color: 0x1d,
+            Ultrasonic: 0x1e,
+            Gyroscope: 0x20,
+            Infrared: 0x21,
+            Initializing: 0x7d,
+            Empty: 0x7e, // 126
+            WrongPort: 0x7f,
+            Unknown: 0xff,
+        };
+        this.outputPort = {
+            A: 1,
+            B: 2,
+            C: 4,
+            D: 8,
+            ALL: 0x0f,
+        };
+        this.PORT_MAP = {
+            A: {
+                type: this.motorMovementTypes.Power,
+                power: 0,
+            },
+            B: {
+                type: this.motorMovementTypes.Power,
+                power: 0,
+            },
+            C: {
+                type: this.motorMovementTypes.Power,
+                power: 0,
+            },
+            D: {
+                type: this.motorMovementTypes.Power,
+                power: 0,
+            },
+        };
+        this.BUTTON_MAP = {
+            UP: {
+                key: 1,
+            },
+            DOWN: {
+                key: 3,
+            },
+            LEFT: {
+                key: 5,
+            },
+            RIGHT: {
+                key: 4,
+            },
+            BACK: {
+                key: 6,
+            },
+            ENTER: {
+                key: 2,
+            },
+        };
+        this.STATUS_COLOR_MAP = {
+            OFF: {
+                key: 0,
+            },
+            GREEN: {
+                key: 1,
+            },
+            RED: {
+                key: 2,
+            },
+            ORANGE: {
+                key: 3,
+            },
+            GREEN_FLASH: {
+                key: 4,
+            },
+            RED_FLASH: {
+                key: 5,
+            },
+            ORANGE_FLASH: {
+                key: 6,
+            },
+            GREEN_PULSE: {
+                key: 7,
+            },
+            RED_PULSE: {
+                key: 8,
+            },
+            ORANGE_PULSE: {
+                key: 9,
+            },
+        };
+        this.CURRENT_STATUS_COLOR = {
+            COLOR: this.STATUS_COLOR_MAP.GREEN,
+            APPLIED: true,
+        };
+        this.SENSOR_MAP = {
+            '1': {
+                type: this.deviceTypes.Touch,
+                mode: 0,
+            },
+            '2': {
+                type: this.deviceTypes.Touch,
+                mode: 0,
+            },
+            '3': {
+                type: this.deviceTypes.Touch,
+                mode: 0,
+            },
+            '4': {
+                type: this.deviceTypes.Touch,
+                mode: 0,
+            },
+        };
+        this.isSensing = false;
+        this.LAST_PORT_MAP = null;
     }
 
     /**
