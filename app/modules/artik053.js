@@ -536,11 +536,12 @@ class artik053 extends BaseModule {
                 } else {
                     sensorBody = Buffer.concat([sensorBody, modeSet, readySi]);
                 }
-            });
+            });*/
             /*
 			리팩토링 없는 isButtonPressed 시작
 			sensorBody
-			* */
+			*/
+    /*
             let offsetAfterPortResponse = 4 * this.commandResponseSize; // 포트는 [0~3] 까지다.
             Object.keys(this.BUTTON_MAP).forEach((button) => {
                 const buttonPressedCommand = new Buffer([
@@ -557,6 +558,7 @@ class artik053 extends BaseModule {
             /*
             리팩토링 없는 isButtonPressed 종료
              */
+    /*
             const totalLength = initBuf.length + sensorBody.length;
             const sendBuffer = Buffer.concat(
                 [initBuf, sensorBody],
