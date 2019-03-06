@@ -10,7 +10,6 @@
   "module": "arduinoExt.js",
   "url": "https://developer.artik.io/",
   "video": "https://www.youtube.com/channel/UC4rolvSm8ikmnymdbbznNJw",
-  "reconnect": true,
   "entry": {
     "protocol": "json"
   },
