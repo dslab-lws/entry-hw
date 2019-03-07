@@ -15,8 +15,9 @@
   "hardware": {
     "type": "serial",
     "control": "slave",
-    "vendor": "Microsoft",
     "duration": 32,
-    "baudRate": 115200
+    "vendor": [ "Arduino", "wch.cn", "FTDI" ],
+    "baudRate": 115200,
+    "firmwarecheck": false
   }
 }
