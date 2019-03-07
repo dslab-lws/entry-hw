@@ -7,7 +7,7 @@
   "category": "board",
   "platform": [ "win32", "darwin" ],
   "icon": "artik053.png",
-  "module": "arduinoExt.js",
+  "module": "artik053.js",
   "reconnect": true,
   "entry": {
     "protocol": "json"
