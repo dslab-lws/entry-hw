@@ -8,6 +8,7 @@
   "platform": [ "win32", "darwin" ],
   "icon": "artik053.png",
   "module": "artik053.js",
+  "reconnect": true,
   "entry": {
     "protocol": "json"
   },
