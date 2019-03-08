@@ -58,6 +58,7 @@ float lastUltrasonic = 0;
 
 // 버퍼
 char buffer[52];
+unsigned char buffer_buf[20][52];
 unsigned char prevc=0;
 
 byte index = 0;
@@ -73,6 +74,12 @@ boolean isUltrasonic = false;
 // 전역변수 선언 종료
 
 void setup(){
+    for(int j = 0; j < 52 ; j++){ 
+      for(int i = 0; i < 20 ; i++){
+        buffer_buf[i][j] = 0;
+      }
+    }
+  
   Serial.begin(115200);
   initPorts();
   delay(200);
@@ -86,15 +93,38 @@ void initPorts() {
 }
 
 void loop(){
-  while (Serial.available()) {
-    if (Serial.available() > 0) {
-      char serialRead = Serial.read();
-      setPinValue(serialRead&0xff);
+
+  int i = 0;
+
+  if(Serial.available()){
+    int j;
+    for(j = 0 ; Serial.available() > 0 ; j++)  {
+     char serialRead = Serial.read();
+     buffer_buf[i][j] = serialRead&0xff;
+     setPinValue(serialRead&0xff);
+
+     delay(15);
+     sendPinValues();
+     delay(10);
     }
-  } 
+    i++;
+  }
+ 
+    
   delay(15);
   sendPinValues();
   delay(10);
+  if(digitalRead(7)){
+    for(int i = 0 ; i < 20 ; i++){
+      for(int j = 0 ; j < 52 ; j++){
+      Serial.print(buffer_buf[i][j]);
+      Serial.print(' ');
+     }
+     Serial.println();
+    }
+  while(digitalRead(7)){}
+  i = 0;
+  }
 }
 
 void setPinValue(unsigned char c) {
@@ -222,16 +252,16 @@ void runModule(int device) {
       }
     }
     break;
-    case SERVO_PIN:{
-      setPortWritable(pin);
-      int v = readBuffer(7);
-      if(v>=0&&v<=180){
-        Servo sv = servos[searchServoPin(pin)];
-        sv.attach(pin);
-        sv.write(v);
-      }
-    }
-    break;
+//    case SERVO_PIN:{
+//      setPortWritable(pin);
+//      int v = readBuffer(7);
+//      if(v>=0&&v<=180){
+//        Servo sv = servos[searchServoPin(pin)];
+//        sv.attach(pin);
+//        sv.write(v);
+//      }
+//    }
+//    break;
     case TIMER:{
       lastTime = millis()/1000.0; 
     }
@@ -402,4 +432,3 @@ void callDebug(char c){
   writeSerial(c);
   writeEnd();
 }
-
