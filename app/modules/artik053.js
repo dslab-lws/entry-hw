@@ -424,11 +424,11 @@ Module.prototype.getDataByBuffer = function (buffer) {
 };
 
 Module.prototype.disconnect = function (connect) {
-    var self = this;
+    /*var self = this;
     connect.close();
     if (self.sp) {
         delete self.sp;
-    }
+    }*/
 };
 
 Module.prototype.reset = function () {
