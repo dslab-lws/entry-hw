@@ -58,7 +58,7 @@ float lastUltrasonic = 0;
 
 // 버퍼
 char buffer[52];
-unsigned char buffer_buf[20][52];
+byte buffer_buf[20][52];
 unsigned char prevc=0;
 
 byte index = 0;
