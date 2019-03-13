@@ -17,7 +17,7 @@
     "type": "serial",
     "control": "slave",
     "duration": 32,
-    "vendor": "FTDI",
+    "vendor": "Arduino",
     "baudRate": 115200,
     "firmwarecheck": false
   }
