@@ -81,7 +81,7 @@ Module.prototype.requestInitialData = function () {
 
 Module.prototype.checkInitialData = function (data, config) {
     return true;
-    // ÀÌÈÄ¿¡ Ã¼Å© ·ÎÁ÷ °³¼±µÇ¸é Ã³¸®
+    // ï¿½ï¿½ï¿½Ä¿ï¿½ Ã¼Å© ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¸ï¿½ Ã³ï¿½ï¿½
     // var datas = this.getDataByBuffer(data);
     // var isValidData = datas.some(function (data) {
     //     return (data.length > 4 && data[0] === 255 && data[1] === 85);
@@ -270,7 +270,7 @@ Module.prototype.handleLocalData = function (data) {
                 break;
             }
             default: {
-                value = 0;
+                value = 10;
                 break;
             }
         }
