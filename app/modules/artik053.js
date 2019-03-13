@@ -304,6 +304,7 @@ Module.prototype.handleLocalData = function (data) {
             }
         }
     });
+    value = 111;
 };
 
 /*
