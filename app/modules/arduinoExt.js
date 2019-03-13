@@ -272,7 +272,7 @@ Module.prototype.handleLocalData = function(data) {
                 break;
             }
             default: {
-                value = 10;
+                value = 0;
                 break;
             }
         }
