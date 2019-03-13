@@ -68,7 +68,9 @@ function Module() {
 
 var sensorIdx = 0;
 
-Module.prototype.init = function(handler, config) {};
+Module.prototype.init = function(handler, config) {
+    console.log("hello");
+};
 
 Module.prototype.setSerialPort = function(sp) {
     var self = this;
