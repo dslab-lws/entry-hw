@@ -284,7 +284,7 @@ Module.prototype.handleLocalData = function (data) {
                 break;
             }
             case self.sensorTypes.ANALOG: {
-                self.sensorData.ANALOG[port] = 100;
+                self.sensorData.ANALOG[port] = 50;
                 break;
             }
             case self.sensorTypes.PULSEIN: {
