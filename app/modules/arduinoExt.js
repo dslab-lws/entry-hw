@@ -262,7 +262,7 @@ Module.prototype.handleLocalData = function(data) {
         var readData = data.subarray(2, data.length);
         var value;
         switch (readData[0]) {
-            case self.sensorValueSize.FLOAT: {
+            case self.sensorVlueSize.FLOAT: {
                 value = new Buffer(readData.subarray(1, 5)).readFloatLE();
                 value = Math.round(value * 100) / 100;
                 break;
@@ -272,7 +272,7 @@ Module.prototype.handleLocalData = function(data) {
                 break;
             }
             default: {
-                value = 0;
+                value = 10;
                 break;
             }
         }
