@@ -58,6 +58,7 @@ float lastUltrasonic = 0;
 
 // 버퍼
 char buffer[52];
+byte buffer_buf[1000] = {0,};
 unsigned char prevc=0;
 
 byte index = 0;
@@ -72,10 +73,14 @@ boolean isStart = false;
 boolean isUltrasonic = false;
 // 전역변수 선언 종료
 
+int BF = 0;
+
 void setup(){
   Serial.begin(115200);
+
   initPorts();
   delay(200);
+  
 }
 
 void initPorts() {
@@ -86,15 +91,40 @@ void initPorts() {
 }
 
 void loop(){
-  while (Serial.available()) {
-    if (Serial.available() > 0) {
-      char serialRead = Serial.read();
-      setPinValue(serialRead&0xff);
+  
+  
+
+  if(Serial.available()){
+    int k = Serial.available();
+    for(int j = 0 ; j < k ; j++)  {
+     char serialRead = Serial.read();
+     buffer_buf[BF] = serialRead;
+     setPinValue(serialRead&0xff);
+     BF++;
     }
-  } 
-  delay(15);
+  }
+ 
+    
+  delay(30);
   sendPinValues();
-  delay(10);
+  delay(30);
+  if(digitalRead(7)){
+    delay(3000);
+    Serial.println(BF);
+    for(int i = 0 ; i < 1000 ; i++){
+      Serial.print(buffer_buf[i]);
+      Serial.print(" | ");
+     
+     if(i%100 == 0){
+     Serial.println();
+     delay(1000);
+     }
+     
+    }
+    BF = 0;
+  }
+  
+  
 }
 
 void setPinValue(unsigned char c) {
@@ -222,16 +252,16 @@ void runModule(int device) {
       }
     }
     break;
-    case SERVO_PIN:{
-      setPortWritable(pin);
-      int v = readBuffer(7);
-      if(v>=0&&v<=180){
-        Servo sv = servos[searchServoPin(pin)];
-        sv.attach(pin);
-        sv.write(v);
-      }
-    }
-    break;
+//    case SERVO_PIN:{
+//      setPortWritable(pin);
+//      int v = readBuffer(7);
+//      if(v>=0&&v<=180){
+//        Servo sv = servos[searchServoPin(pin)];
+//        sv.attach(pin);
+//        sv.write(v);
+//      }
+//    }
+//    break;
     case TIMER:{
       lastTime = millis()/1000.0; 
     }
@@ -241,23 +271,24 @@ void runModule(int device) {
 
 void sendPinValues() {  
   int pinNumber = 0;
-  for (pinNumber = 0; pinNumber < 12; pinNumber++) {
-    if(digitals[pinNumber] == 0) {
-      sendDigitalValue(pinNumber);
-      callOK();
-    }
-  }
-  for (pinNumber = 0; pinNumber < 6; pinNumber++) {
+//  for (pinNumber = 0; pinNumber < 12; pinNumber++) {
+//    if(digitals[pinNumber] == 0) {
+//      sendDigitalValue(pinNumber);
+//      callOK();
+        
+//    }
+//  }
+  for (pinNumber = 0; pinNumber < 4; pinNumber++) {
     if(analogs[pinNumber] == 0) {
       sendAnalogValue(pinNumber);
-      callOK();
     }
   }
-  
-  if(isUltrasonic) {
-    sendUltrasonic();  
-    callOK();
-  }
+
+//  
+//  if(isUltrasonic) {
+//    sendUltrasonic();  
+//    callOK();
+//  }
 }
 
 void setUltrasonicMode(boolean mode) {
@@ -299,11 +330,45 @@ void sendDigitalValue(int pinNumber) {
 }
 
 void sendAnalogValue(int pinNumber) {
-  writeHead();
-  sendFloat(analogRead(pinNumber));  
-  writeSerial(pinNumber);
-  writeSerial(ANALOG);
-  writeEnd();
+  float analogVal = (pinNumber+1)*50;
+  int idx_tx = 0;
+  char buf_tx[16] = {0,};
+
+  buf_tx[idx_tx] = 0xff;
+  idx_tx++;
+  buf_tx[idx_tx] = 0x55;
+  idx_tx++;
+  buf_tx[idx_tx] = 2;
+  idx_tx++;
+  val.floatVal = analogVal;
+  buf_tx[idx_tx] = val.byteVal[0];
+  idx_tx++;
+  buf_tx[idx_tx] = val.byteVal[1];
+  idx_tx++;
+  buf_tx[idx_tx] = val.byteVal[2];
+  idx_tx++;
+  buf_tx[idx_tx] = val.byteVal[3];
+  idx_tx++;
+  buf_tx[idx_tx] = pinNumber;
+  idx_tx++;
+  buf_tx[idx_tx] = 2;
+  idx_tx++;
+  buf_tx[idx_tx] = 13;
+  idx_tx++;
+  buf_tx[idx_tx] = 10;
+  idx_tx++;
+  buf_tx[idx_tx] = 0xff;
+  idx_tx++;
+  buf_tx[idx_tx] = 0x55;
+  idx_tx++;
+  buf_tx[idx_tx] = 13;
+  idx_tx++;
+  buf_tx[idx_tx] = 10;
+  idx_tx++;
+  int c;
+  for(c = 0 ; c < idx_tx ; c++){
+    Serial.write(buf_tx[c]);
+    }
 }
 
 void writeBuffer(int index,unsigned char c){
@@ -402,4 +467,3 @@ void callDebug(char c){
   writeSerial(c);
   writeEnd();
 }
-

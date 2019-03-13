@@ -270,7 +270,7 @@ Module.prototype.handleLocalData = function (data) {
                 break;
             }
             default: {
-                value = 10;
+                value = 0;
                 break;
             }
         }
@@ -284,7 +284,7 @@ Module.prototype.handleLocalData = function (data) {
                 break;
             }
             case self.sensorTypes.ANALOG: {
-                self.sensorData.ANALOG[port] = value;
+                self.sensorData.ANALOG[port] = 100;
                 break;
             }
             case self.sensorTypes.PULSEIN: {
@@ -304,7 +304,7 @@ Module.prototype.handleLocalData = function (data) {
             }
         }
     });
-    value = 111;
+    
 };
 
 /*
@@ -439,4 +439,4 @@ Module.prototype.reset = function () {
     this.sensorData.PULSEIN = {};
 };
 
-module.exports = new Module();
+Module.exports = new Module();
