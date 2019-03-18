@@ -8,6 +8,8 @@
   "platform": [ "win32", "darwin" ],
   "icon": "artik053.png",
   "module": "arduinoExt.js",
+  "url": "https://developer.artik.io",
+	"video": "https://www.youtube.com/channel/UC4rolvSm8ikmnymdbbznNJw",
   "reconnect": true,
   "entry": {
     "protocol": "json"
